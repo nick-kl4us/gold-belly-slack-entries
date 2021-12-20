@@ -1,0 +1,15 @@
+{
+  "name": "remove-dupe-csv",
+  "version": "1.0.0",
+  "description": "To help with sorting out who is a duplicate entry",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "nick-kl4us",
+  "license": "ISC",
+  "dependencies": {
+    "papaparse": "^5.3.1"
+  }
+}
