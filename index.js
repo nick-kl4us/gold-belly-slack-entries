@@ -22,10 +22,10 @@ papa.parse(file, {
   worker: true,
   step: function (result) {
     if (result.data.length) {
-      count++;
       const [user, entry] = result.data;
 
       if (user === "user") return; // skip first row of csv
+      count++;
 
       const cleanEntry = +entry.replace(/[^\d]/, "");
 
@@ -49,11 +49,14 @@ papa.parse(file, {
       }
     }
   },
-  complete: function (results, file) {
-    console.log("parsing complete read", count - 1, "records.");
-    console.log("Gold Belly gift card entries...\n", entries);
-    console.log("People that need to pick again:\n", pickAgainPeople);
+  complete: function (_, file) {
+    console.log(process.argv);
     console.log("The numbers that are left!:\n", JSON.stringify(Array.from(availableNumbersMap.keys())));
+    console.log("Gold Belly gift card entries...\n");
+    const results = new Map([...entries.entries()].sort(([userA, a], [userB, b]) => a - b));
+    console.log(results);
+    console.log("People that need to pick again:\n", pickAgainPeople);
+    console.log("parsing complete read", count - 1, "records.");
     console.log("END...");
   },
 });
